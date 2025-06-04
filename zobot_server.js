@@ -30,6 +30,7 @@ app.post("/zobot/webhook", (req, res) => {
       };
       // IMPORTANT: use res.json(...) so Zoho sees a proper JSON payload
       return res.status(200).json(responsePayload);
+      break;
     case "message":
       console.log("Message event received");
       const message = payload.message;
@@ -44,9 +45,12 @@ app.post("/zobot/webhook", (req, res) => {
         ],
       };
       return res.status(200).json(secondResponsePayload);
+      break;
+
     default:
       console.log("Unknown handler received:", handler);
       return res.sendStatus(200);
+      break;
   }
 });
 
